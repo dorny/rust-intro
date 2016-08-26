@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   viewBox="0 0 217.54768 297.5"
+   width="217.54768pt"
+   height="297.5pt"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="compilation.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview171"
+     showgrid="false"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:zoom="1.3553478"
+     inkscape:cx="-65.090698"
+     inkscape:cy="203.87818"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata4"> Produced by OmniGraffle 6.5.2 <dc:date>2016-04-19 21:30:07 +0000</dc:date>
+<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <defs
+     id="defs6">
+    <font-face
+       font-family="Helvetica"
+       font-size="12"
+       units-per-em="1000"
+       underline-position="-75.683594"
+       underline-thickness="49.316406"
+       slope="0"
+       x-height="522.94922"
+       cap-height="717.28516"
+       ascent="770.01953"
+       descent="-229.98047"
+       font-weight="500"
+       id="font-face8"
+       stemv="0"
+       stemh="0"
+       accent-height="0"
+       ideographic="0"
+       alphabetic="0"
+       mathematical="0"
+       hanging="0"
+       v-ideographic="0"
+       v-alphabetic="0"
+       v-mathematical="0"
+       v-hanging="0"
+       strikethrough-position="0"
+       strikethrough-thickness="0"
+       overline-position="0"
+       overline-thickness="0">
+      <font-face-src>
+        <font-face-name
+           name="Helvetica" />
+      </font-face-src>
+    </font-face>
+    <marker
+       orient="auto"
+       overflow="visible"
+       markerUnits="strokeWidth"
+       id="FilledArrow_Marker"
+       viewBox="-1 -4 10 8"
+       markerWidth="10"
+       markerHeight="8"
+       style="color:#000000;overflow:visible">
+      <g
+         id="g11">
+        <path
+           d="M 8,0 0,-3 0,3 Z"
+           id="path13"
+           inkscape:connector-curvature="0"
+           style="fill:currentColor;stroke:currentColor;stroke-width:1" />
+      </g>
+    </marker>
+  </defs>
+  <g
+     id="g4505"
+     transform="translate(-232.5,-35)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="rect87"
+       height="27"
+       width="95"
+       y="45.5"
+       x="243" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect89"
+       height="27"
+       width="95"
+       y="45.5"
+       x="243" />
+    <text
+       y="52"
+       x="248"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text91">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan93"
+         textLength="66.029297"
+         y="63"
+         x="257.48535"
+         font-weight="500"
+         font-size="12">Rust Source</tspan>
+    </text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="rect95"
+       height="27"
+       width="95"
+       y="103.5"
+       x="243" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect97"
+       height="27"
+       width="95"
+       y="103.5"
+       x="243" />
+    <text
+       y="110"
+       x="248"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text99">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan101"
+         textLength="20.666016"
+         y="121"
+         x="280.16699"
+         font-weight="500"
+         font-size="12">HIR</tspan>
+    </text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="rect103"
+       height="27"
+       width="95"
+       y="237"
+       x="243" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect105"
+       height="27"
+       width="95"
+       y="237"
+       x="243" />
+    <text
+       y="243.5"
+       x="248"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text107">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan109"
+         textLength="13.347656"
+         y="254.5"
+         x="267.60156"
+         font-weight="500"
+         font-size="12">LL</tspan>
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan111"
+         textLength="33.333984"
+         y="254.5"
+         x="280.06445"
+         font-weight="500"
+         font-size="12">VM IR</tspan>
+    </text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="rect113"
+       height="27"
+       width="95"
+       y="295"
+       x="243" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect115"
+       height="27"
+       width="95"
+       y="295"
+       x="243" />
+    <text
+       y="301.5"
+       x="248"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text117">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan119"
+         textLength="77.378906"
+         y="312.5"
+         x="251.81055"
+         font-weight="500"
+         font-size="12">Machine Code</tspan>
+    </text>
+    <line
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#FilledArrow_Marker)"
+       id="line121"
+       y2="93.099998"
+       x2="290.5"
+       y1="73"
+       x1="290.5" />
+    <line
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#FilledArrow_Marker)"
+       id="line123"
+       y2="284.60001"
+       x2="290.5"
+       y1="264.5"
+       x1="290.5" />
+    <text
+       y="81"
+       x="312"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text125">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan127"
+         textLength="116.07422"
+         y="92"
+         x="312"
+         font-weight="500"
+         font-size="12">Parsing and Desugaring</tspan>
+    </text>
+    <text
+       y="195.75"
+       x="312"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text129">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan131"
+         textLength="88.70508"
+         y="206.75"
+         x="312"
+         font-weight="500"
+         font-size="12">Borrow checking</tspan>
+    </text>
+    <text
+       y="272.5"
+       x="312"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text133">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan135"
+         textLength="66.691406"
+         y="283.5"
+         x="312"
+         font-weight="500"
+         font-size="12">Optimization</tspan>
+    </text>
+    <text
+       y="140.5625"
+       x="312"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text137">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan139"
+         textLength="7.330078"
+         y="151.5625"
+         x="312"
+         font-weight="500"
+         font-size="12">T</tspan>
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan141"
+         textLength="70.04297"
+         y="151.5625"
+         x="318.67383"
+         font-weight="500"
+         font-size="12">ype checking</tspan>
+    </text>
+    <text
+       y="215.75"
+       x="312"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text143">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan145"
+         textLength="66.691406"
+         y="226.75"
+         x="312"
+         font-weight="500"
+         font-size="12">Optimization</tspan>
+    </text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="rect147"
+       height="27"
+       width="95"
+       y="161.5"
+       x="243" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect149"
+       height="27"
+       width="95"
+       y="161.5"
+       x="243" />
+    <text
+       y="168"
+       x="248"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-dasharray:none;stroke-opacity:1"
+       id="text151">
+      <tspan
+         style="font-weight:500;font-size:12px;font-family:Helvetica"
+         id="tspan153"
+         textLength="21.996094"
+         y="179"
+         x="279.50195"
+         font-weight="500"
+         font-size="12">MIR</tspan>
+    </text>
+    <line
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#FilledArrow_Marker)"
+       id="line155"
+       y2="151.10001"
+       x2="290.5"
+       y1="131"
+       x1="290.5" />
+    <line
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#FilledArrow_Marker)"
+       id="line157"
+       y2="226.60001"
+       x2="290.5"
+       y1="189"
+       x1="290.5" />
+  </g>
+</svg>

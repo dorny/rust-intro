@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="TypeScript">
+    <meta name="author" content="Michal Dorner">
+
+    <title>The Rust programming language</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!--<section>
+                <img src="/img/rust-logo-blk.svg" alt="Rust" width="50%" height="50%">
+            </section>-->
+            <section data-markdown>
+                <script type="text/template">
+                    # The Rust programming language
+
+                    [@dorny](http://github.com/dorny)
+
+                    Slides: [https://dorny.github.io/rust-intro](https://dorny.github.io/rust-intro/)
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Background and Motivation
+                    * Grew out of a personal project by Mozilla employee Graydon Hoare
+                    * Mozilla began sponsoring the project in 2009
+                    * Motivation were real life issues with C++:
+                        * security bugs
+                        * data races
+                        * complexity of language
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## What is Rust?
+                    * Alternative to C and C++
+                    * Focused on system programming
+                    * Three goals: _safety_, _speed_ and _concurrency_
+                    * Zero-cost abstractions
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## System programming
+                    ### vs.
+                    ## Application Programming
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## Application Programming
+                    * Concerned with high-level topics
+                    * Solves problems of interest to humans
+                    * Often done in languages like C# or Java that free the programmer from low-level worries but have big fat runtime systems
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## System programming
+                    * Controls and manages computer systems
+                    * Deals with writing device drivers and operating systems, or directly uses them
+                    * Extremely small run-time images, they often have to run in resource constrained environments
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## What does matter in System programming?
+                    * Stack vs. Heap
+                    * Memory layout
+                    * Static vs. Dynamic dispatch
+                    * Deterministic memory management
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## The Rust programming language
+                    * Compiled to native code (using LLVM)
+                    * Automatic resource management (without GC)
+                    * _Trait_ type system instead of OOP
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                "It has essentially the same performance as C++ for low-level fragments of code, but better support in the language and standard library for stitching these low-level fragments into higher level constructs that match the semantics of the problem being solved."
+
+                [Raph Levien](https://medium.com/@raphlinus) on ["Inside the fastest font renderer in the world"](https://medium.com/@raphlinus/inside-the-fastest-font-renderer-in-the-world-75ae5270c445#.85n5scyu4).
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Rust compilation process
+                    ![rust compilation flow](/img/compilation.svg)
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    # Resource management
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Stack
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Heap
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Owerenship, References and Borrowing
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Move semantics
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Copy types
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Runtime reference counting
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                "Rust is like doing parkour while suspended on strings & wearing protective gear. Yes, it will sometimes look a little ridiculous, but you'll be able to do all sorts of cool moves without hurting yourself."
+
+                [llogiq](https://www.reddit.com/user/llogiq) on [reddit](https://www.reddit.com/r/rust/comments/4l44z3/why_should_i_use_rust/d3k7ayi).
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    # Abstractions
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Enums
+
+                    An enum in Rust is a type that represents data that is one of several possible variants. Each variant in the enum can optionally have data associated with it.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Pattern matching
+
+                    _match_ takes an expression and then branches based on its value. Each ‘arm’ of the branch is of the form val => expression. When the value matches, that arm’s expression will be evaluated.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Traits
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Generics
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Macros
+                </script>
+            </section>
+
+            <section>
+                <h3>Thanks</h3>
+                <img class="logo" src="/img/rust-logo-blk.svg" alt="Rust logo" width="50%" height="auto" />
+                <p><a href="www.rust-lang.org">www.rust-lang.org</a></p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+                transition: 'none',
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+            var themes = ['beige','black','blood','league','moon','night','serif','simple','sky','solarized','white'];
+            var themesPath = 'css/theme/';
+
+            // Hack for live theme changing
+            document.addEventListener("keypress", function(event){
+                if (event.key != 't') return;
+
+                // loop over themes
+                themes.push(themes.shift());
+
+                // set current theme
+                document.getElementById('theme').setAttribute('href','css/theme/'+themes[0]+'.css')
+
+                return false;
+            });
+    </script>
+</body>
+
+</html>
