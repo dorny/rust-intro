@@ -305,7 +305,8 @@ body {
   border: none;
   box-shadow: none; }
 
-.reveal p code {
+.reveal p code,
+.reveal span code {
   font-family: Menlo,monospace;
   text-rendering: optimizeLegibility;
   color: black; }

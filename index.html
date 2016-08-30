@@ -10,7 +10,7 @@
     <title>The Rust programming language</title>
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="css/theme/dorny.css" id="theme">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -47,18 +47,68 @@
                     * Motivation were real life issues with C++:
                         * security bugs
                         * data races
-                        * complexity of language
+                        * complexity of the language and codebase
                 </script>
+            </section>
+
+            <section>
+                <h2>What is Rust?</h2>
+                <ul>
+                    <li class="fragment">Alternative to C and C++</li>
+                    <li class="fragment">Focused on system programming</li>
+                    <li class="fragment">Three main goals:
+                        <ul>
+                            <li>safety</li>
+                            <li>speed</li>
+                            <li>concurrency</li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ## What is Rust?
-                    * Alternative to C and C++
-                    * Focused on system programming
-                    * Three goals: _safety_, _speed_ and _concurrency_
-                    * Zero-cost abstractions
+                    ## Rust includes:
+                    * Compilation to native code (using LLVM)
+                    * Automatic resource management (without GC)
+                    * _Trait_ type system instead of OOP
+                    * and more...
                 </script>
+            </section>
+
+            <section>
+                <h2>Why use Rust?</h2>
+                <ul>
+                    <li class="fragment">Fast code, low memory footprint</li>
+                    <li class="fragment">Go from bare metal (assembly; C FFI) ...</li>
+                    <li class="fragment">... to high-level (collections, closures, generic containers)</li>
+                    <li class="fragment">With zero cost (no GC, unboxed closures, monomorphization of generics)</li>
+                    <li class="fragment">Safety:
+                        <ul>
+                            <li>No segmentation faults</li>
+                            <li>No undefined behavior</li>
+                            <li>No data races</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Where is Rust now?</h2>
+                <ul>
+                    <li><p>1.0 release was back in May 2015</p></li>
+                    <li><p>Rolling release cycle</p></li>
+                    <li><p>Open source from the begining <code>https://github.com/rust-lang/rust/</code></p></li>
+                    <li><p>Open model for future change (RFC process) <code>https://github.com/rust-lang/rfcs/</code></p></li>
+                    <li>
+                        Awesome developer community:
+                        <ul>
+                            <li>~1,500 unique commiters to <span><code>rust.git</code></span></li>
+                            <li>~1,000 people in <span><code>#rust</code></span></li>
+                            <li>~250 people in <span><code>#rust-internals</code></span></li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
 
             <section data-markdown>
@@ -96,15 +146,6 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ## The Rust programming language
-                    * Compiled to native code (using LLVM)
-                    * Automatic resource management (without GC)
-                    * _Trait_ type system instead of OOP
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
                 "It has essentially the same performance as C++ for low-level fragments of code, but better support in the language and standard library for stitching these low-level fragments into higher level constructs that match the semantics of the problem being solved."
 
                 [Raph Levien](https://medium.com/@raphlinus) on ["Inside the fastest font renderer in the world"](https://medium.com/@raphlinus/inside-the-fastest-font-renderer-in-the-world-75ae5270c445#.85n5scyu4).
@@ -126,19 +167,112 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Stack
+                    ## Destructors
+
+                    * Rust provides automatic destructors through the _Drop_ trait:
+
+                    ``` rust
+                        pub trait Drop {
+                           fn drop(&mut self);
+                        }
+                    ```
+
+                    * _drop_ is called automatically when an object goes out of scope.
+                    * After _drop_ is run, Rust will recursively try to drop all of the fields of self.
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Heap
+                    ### If a struct has no special logic for being dropped other than dropping its children, then it means Drop doesn't need to be implemented at all
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Owerenship, References and Borrowing
+                    ## Custom implementation of Drop
+
+                    ``` rust
+                        struct Resource{
+                            name: &'static str,
+                        }
+
+                        impl Drop for Resource {
+                            fn drop(&mut self) {
+                                println!("> Dropping: {}", self.name);
+                            }
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Stack
+
+                    ``` rust
+                        fn resource_on_stack() {
+
+                            let r1 = Resource { name: "r1" };
+                            {
+                                let r2 = Resource { name: "r2" };
+                                // Prints:  > Dropping: r2
+                            }
+
+                            // Prints:  > Dropping: r1
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Heap
+
+                    ``` rust
+                        fn resource_on_stack() {
+
+                            let r1 = box Resource { name: "r1" };
+                            {
+                                let r2 = box Resource { name: "r2" };
+                                // Prints:  > Dropping: r2
+                            }
+
+                            // Prints:  > Dropping: r1
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Clone, Copy and Move
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Copy
+
+                    * Types that can be copied by simply copying bits
+                    * A type can implement Copy if all of its components implement Copy
+                    * Rust does not allow you to reimplement Copy
+                    * We can just derive a `Copy` implementation
+                        ``` rust
+                        #[derive(Copy, Clone)]
+                        struct Foo;
+                        ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Clone
+
+                    * Common trait for the ability to explicitly duplicate an object
+                    * Differs from Copy in that Copy is implicit and extremely inexpensive, while Clone is always explicit and may or may not be expensive
+                    * Rust does not allow you to reimplement Copy, but you may reimplement Clone and run arbitrary code
+                    * Can be used with #[derive] if all fields are Clone
                 </script>
             </section>
 
@@ -150,7 +284,49 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Copy types
+                    ## Move semantics in C++
+
+                    ``` c++
+                        template <typename T>
+                        class vector {
+                            T * _data;
+                            int _length;
+                        public:
+                            vector(vector && tmp)    // move constructor ->
+                            : _data(tmp._data)       //     steal _data
+                            , _length(tmp._length)   //     steal _length
+                            {
+                                tmp._data = nullptr; //     clear _data
+                                tmp._length = 0;     //     clear _length
+                            }
+                            // ...
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Move semantics in C++
+
+                    * Need to be explicitly implemented
+                    * Destrucor on _rvalue reference_ is still executed
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Move semantics in Rust
+
+                    * Default behavior
+                    * Rust moves everything that does not implement the Copy trait.
+                    * Destrucor on _moved_ value will be not executed
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Owerenship, References and Borrowing
                 </script>
             </section>
 
@@ -235,7 +411,21 @@
 				]
 			});
 
-            var themes = ['beige','black','blood','league','moon','night','serif','simple','sky','solarized','white'];
+            var themes = [
+                'beige',
+                'black',
+                'blood',
+                'dorny',
+                'league',
+                'moon',
+                'night',
+                'serif',
+                'simple',
+                'sky',
+                'solarized',
+                'white'
+            ];
+
             var themesPath = 'css/theme/';
 
             // Hack for live theme changing
