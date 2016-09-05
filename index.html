@@ -66,16 +66,6 @@
                 </ul>
             </section>
 
-            <section data-markdown>
-                <script type="text/template">
-                    ## Rust includes:
-                    * Compilation to native code (using LLVM)
-                    * Automatic resource management (without GC)
-                    * _Trait_ type system instead of OOP
-                    * and more...
-                </script>
-            </section>
-
             <section>
                 <h2>Why use Rust?</h2>
                 <ul>
@@ -91,6 +81,14 @@
                         </ul>
                     </li>
                 </ul>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                "It has essentially the same performance as C++ for low-level fragments of code, but better support in the language and standard library for stitching these low-level fragments into higher level constructs that match the semantics of the problem being solved."
+
+                [Raph Levien](https://medium.com/@raphlinus) on ["Inside the fastest font renderer in the world"](https://medium.com/@raphlinus/inside-the-fastest-font-renderer-in-the-world-75ae5270c445#.85n5scyu4).
+                </script>
             </section>
 
             <section>
@@ -137,7 +135,7 @@
             <section data-markdown>
                 <script type="text/template">
                     ## What does matter in System programming?
-                    * Stack vs. Heap
+                    * Stack vs. Heap allocation
                     * Memory layout
                     * Static vs. Dynamic dispatch
                     * Deterministic memory management
@@ -146,9 +144,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                "It has essentially the same performance as C++ for low-level fragments of code, but better support in the language and standard library for stitching these low-level fragments into higher level constructs that match the semantics of the problem being solved."
-
-                [Raph Levien](https://medium.com/@raphlinus) on ["Inside the fastest font renderer in the world"](https://medium.com/@raphlinus/inside-the-fastest-font-renderer-in-the-world-75ae5270c445#.85n5scyu4).
+                    # Rust Basic Course
                 </script>
             </section>
 
@@ -161,6 +157,248 @@
 
             <section data-markdown>
                 <script type="text/template">
+                    ## Data Types
+                    * Primitives
+                    * Tuples
+                    * Array and Slices
+                    * Structures
+                    * Enums
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Primitives
+                    * signed integers: `i8`, `i16`, `i32`, `i64` and `isize` (pointer size)
+                    * unsigned integers: `u8`, `u16`, `u32`, `u64` and `usize` (pointer size)
+                    * floating point: `f32`, `f64`
+                    * char Unicode scalar values like 'a', 'α' and '∞'
+                    * bool either `true` or `false`
+                    * unit type `()`
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Tuples
+
+                    A tuple is an ordered list of fixed size where the type of elements is known, but need not be the same.
+
+                    ``` rust
+                    let foo = (1, true);
+                    let bar: (i32, &str) = (1, "hello");
+
+                    let (num, txt) = bar;
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Array and Slices
+
+                    * Array is a fixed-size list of elements of the same type
+                        ``` rust
+                        let a = [1, 2, 3]; // a: [i32; 3]
+                        ```
+
+                    * Slices allows safe, efficient access to a portion of an array without copying.
+                        ``` rust
+                        let a = [0, 1, 2, 3, 4];
+                        let complete = &a[..]; //  [0, 1, 2, 3, 4];
+                        let middle = &a[1..4]; //  [1, 2, 3]
+                        ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Enums
+
+                    An enum in Rust is a type that represents data that is one of several possible variants. Each variant in the enum can optionally have data associated with it.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Enums
+
+                    ``` rust
+                    pub enum Json {
+                        Number(f64),
+                        Text(String),
+                        Boolean(bool),
+                        Array(Vec<Json>),
+                        Object(HashMap<String, Json>),
+                        Null,
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Flow Control
+                    * `if / else`
+                    * `loop`
+                    * `while`
+                    * `for`
+                    * `match`
+                    * `if let`
+                    * `while let`
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### `if / else`
+                    * Branching is similar to other languages
+                    * Condition doesn't need to be surrounded by parentheses
+                    * Each condition is followed by a block
+                    * `if-else` conditionals are expressions, and, all branches must return the same type.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### `loop`
+                    * Keyword to indicate an infinite loop
+                    * `break` - exit loop at any time
+                    * `continue` - skip the rest of the iteration and start a new one
+                    * Annotated loops - allows to break or continue outer loops
+
+                    ```
+                    'outer: loop {
+                        'inner: loop {
+                            // This would break only the inner loop
+                            //break;
+
+                            // This breaks the outer loop
+                            break 'outer;
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Pattern matching
+
+                    _match_ takes an expression and then branches based on its value. Each ‘arm’ of the branch is of the form val => expression. When the value matches, that arm’s expression will be evaluated.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Pattern matching
+
+                    ``` rust
+                    pub fn print_json(value: Json) {
+                        match value {
+                            Json::Number(num) => println!("Number: {}", num),
+                            Json::Text(text) => println!("Text: {}", text),
+                            Json::Boolean(b) => println!("Boolean: {}", b),
+                            Json::Array(vec) => println!("Array with {} elements", vec.len()),
+                            Json::Object(_) => println!("Object"),
+                            Json::Null => println!("Null")
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Pattern matching
+
+                    ``` rust
+                    let value = Json::Boolean(true);
+                    match value {
+                        Json::Boolean(b) if (b == true) => println!("It's true!!!),
+                        _ => println!("Something else than true."),
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Pattern matching
+
+                    ``` rust
+                    let number = 13;
+                    match number {
+                        // Match a single value
+                        1 => println!("One!"),
+                        // Match several values
+                        2 | 3 | 5 | 7 | 11 => println!("This is a prime"),
+                        // Match an inclusive range
+                        13...19 => println!("A teen"),
+                        // Handle the rest of cases
+                        _ => println!("Ain't special"),
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Pattern matching
+
+                    ``` rust
+                    // Match is an expression too
+                    let binary = match boolean {
+                        // The arms of a match must cover all the possible values
+                        false => 0,
+                        true => 1,
+                        // TODO ^ Try commenting out one of these arms
+                    };
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Functions
+                    * Methods
+                    * Closures
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Modules
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Crates
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Attributes
+                </script>
+            </section>
+
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Traits
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Generics
+                </script>
+            </section>
+
+                        <section data-markdown>
+                <script type="text/template">
                     # Resource management
                 </script>
             </section>
@@ -172,9 +410,9 @@
                     * Rust provides automatic destructors through the _Drop_ trait:
 
                     ``` rust
-                        pub trait Drop {
-                           fn drop(&mut self);
-                        }
+                    pub trait Drop {
+                        fn drop(&mut self);
+                    }
                     ```
 
                     * _drop_ is called automatically when an object goes out of scope.
@@ -193,15 +431,15 @@
                     ## Custom implementation of Drop
 
                     ``` rust
-                        struct Resource{
-                            name: &'static str,
-                        }
+                    struct Resource{
+                        name: &'static str,
+                    }
 
-                        impl Drop for Resource {
-                            fn drop(&mut self) {
-                                println!("> Dropping: {}", self.name);
-                            }
+                    impl Drop for Resource {
+                        fn drop(&mut self) {
+                            println!("> Dropping: {}", self.name);
                         }
+                    }
                     ```
                 </script>
             </section>
@@ -211,16 +449,16 @@
                     ### Stack
 
                     ``` rust
-                        fn resource_on_stack() {
+                    fn resource_on_stack() {
 
-                            let r1 = Resource { name: "r1" };
-                            {
-                                let r2 = Resource { name: "r2" };
-                                // Prints:  > Dropping: r2
-                            }
-
-                            // Prints:  > Dropping: r1
+                        let r1 = Resource { name: "r1" };
+                        {
+                            let r2 = Resource { name: "r2" };
+                            // Prints:  > Dropping: r2
                         }
+
+                        // Prints:  > Dropping: r1
+                    }
                     ```
                 </script>
             </section>
@@ -230,16 +468,16 @@
                     ### Heap
 
                     ``` rust
-                        fn resource_on_stack() {
+                    fn resource_on_stack() {
 
-                            let r1 = box Resource { name: "r1" };
-                            {
-                                let r2 = box Resource { name: "r2" };
-                                // Prints:  > Dropping: r2
-                            }
-
-                            // Prints:  > Dropping: r1
+                        let r1 = box Resource { name: "r1" };
+                        {
+                            let r2 = box Resource { name: "r2" };
+                            // Prints:  > Dropping: r2
                         }
+
+                        // Prints:  > Dropping: r1
+                    }
                     ```
                 </script>
             </section>
@@ -287,20 +525,20 @@
                     ## Move semantics in C++
 
                     ``` c++
-                        template <typename T>
-                        class vector {
-                            T * _data;
-                            int _length;
-                        public:
-                            vector(vector && tmp)    // move constructor ->
-                            : _data(tmp._data)       //     steal _data
-                            , _length(tmp._length)   //     steal _length
-                            {
-                                tmp._data = nullptr; //     clear _data
-                                tmp._length = 0;     //     clear _length
-                            }
-                            // ...
+                    template <typename T>
+                    class vector {
+                        T * _data;
+                        int _length;
+                    public:
+                        vector(vector && tmp)    // move constructor ->
+                        : _data(tmp._data)       //     steal _data
+                        , _length(tmp._length)   //     steal _length
+                        {
+                            tmp._data = nullptr; //     clear _data
+                            tmp._length = 0;     //     clear _length
                         }
+                        // ...
+                    }
                     ```
                 </script>
             </section>
@@ -338,49 +576,32 @@
 
             <section data-markdown>
                 <script type="text/template">
+                    # Error Handling
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    # Advanced Topics
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### Macros
+                    ### Compiler plugins
+                    ### Inline Assembly
+                    ### No stdlib
+                    ### Custom Allocators
+                    ### and more ...
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
                 "Rust is like doing parkour while suspended on strings & wearing protective gear. Yes, it will sometimes look a little ridiculous, but you'll be able to do all sorts of cool moves without hurting yourself."
 
                 [llogiq](https://www.reddit.com/user/llogiq) on [reddit](https://www.reddit.com/r/rust/comments/4l44z3/why_should_i_use_rust/d3k7ayi).
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    # Abstractions
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Enums
-
-                    An enum in Rust is a type that represents data that is one of several possible variants. Each variant in the enum can optionally have data associated with it.
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Pattern matching
-
-                    _match_ takes an expression and then branches based on its value. Each ‘arm’ of the branch is of the form val => expression. When the value matches, that arm’s expression will be evaluated.
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Traits
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Generics
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ## Macros
                 </script>
             </section>
 
