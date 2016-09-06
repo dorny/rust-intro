@@ -216,12 +216,6 @@
                     ### Enums
 
                     An enum in Rust is a type that represents data that is one of several possible variants. Each variant in the enum can optionally have data associated with it.
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    ### Enums
 
                     ``` rust
                     pub enum Json {
@@ -229,7 +223,7 @@
                         Text(String),
                         Boolean(bool),
                         Array(Vec<Json>),
-                        Object(HashMap<String, Json>),
+                        Object(HashMap<String,Json>),
                         Null,
                     }
                     ```
@@ -384,7 +378,6 @@
                 </script>
             </section>
 
-
             <section data-markdown>
                 <script type="text/template">
                     ## Traits
@@ -397,7 +390,45 @@
                 </script>
             </section>
 
-                        <section data-markdown>
+            <section data-markdown>
+                <script type="text/template">
+                    ## Error Handling
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### `Panic`
+
+                    It prints an error message, starts unwinding and usually exits the program.
+                    Shouldn't be used for regular (expected) errors.
+
+                    ``` rust
+                    panic!("Something gone wrong"");
+                    ```
+
+                    If you try running this code, the program will crash with a message like this:
+
+                    ``` txt
+                    thread 'main' panicked at 'Something gone wrong', {FILE}:{LINE}
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    <div id=""></div> `Result`
+
+                    ``` rust
+                    enum Result<T, E> {
+                        Ok(T),
+                        Err(E),
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
                 <script type="text/template">
                     # Resource management
                 </script>
@@ -571,12 +602,6 @@
             <section data-markdown>
                 <script type="text/template">
                     ## Runtime reference counting
-                </script>
-            </section>
-
-            <section data-markdown>
-                <script type="text/template">
-                    # Error Handling
                 </script>
             </section>
 
