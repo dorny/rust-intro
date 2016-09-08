@@ -1,0 +1,23 @@
+{
+    "version": "0.1.0",
+    "command": "env",
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "clang++",
+                "-std=c++11",
+                "-lpthread",
+                "-g","main.cpp",
+                "-o","out/run"
+            ]
+        },
+        {
+            "taskName": "test",
+            "args": ["./out/run"]
+        }
+    ]
+}
