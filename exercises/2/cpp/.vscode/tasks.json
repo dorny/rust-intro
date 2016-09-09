@@ -12,12 +12,12 @@
                 "-std=c++11",
                 "-lpthread",
                 "-g","main.cpp",
-                "-o","out/run"
+                "-o","run"
             ]
         },
         {
             "taskName": "test",
-            "args": ["./out/run"]
+            "args": ["./run"]
         }
     ]
 }
