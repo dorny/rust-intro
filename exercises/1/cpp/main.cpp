@@ -1,3 +1,8 @@
+// This is an c++ anti-example
+// Sometimes it will ends normally, sometimes it will crash.
+// Your task is to find out WHY.
+// Good luck ;)
+
 #include<iostream>
 #include<vector>
 #include<random>
@@ -17,11 +22,16 @@ public:
     void setIsUnique(bool value) { _isUnique = value; }
 };
 
+// Separate component which process the newly added items.
+// It does not have any clue where are the items stored.
 class ItemTracker {
 private:
     Item* _firstItem = nullptr;
 
 public:
+
+    // Some sample internal logic: it saves pointer to the first item and then
+    // checks the following one if they have same score as the first one.
     bool processItem(Item* item) {
         if (_firstItem == nullptr)
         {
@@ -41,15 +51,21 @@ public:
 
 int main(int argc, char** argv) {
 
+    // Random numbers generator
     std::mt19937 rng;
     rng.seed(std::random_device()());
     std::uniform_int_distribution<std::mt19937::result_type> dist(1,100000);
 
+    // Storage of the items
     std::vector<Item> items;
+
+    // Mutex guarding access to Items
     std::mutex mut;
 
+    // Flag signaling we have found a duplicate and we can stop
     bool done = false;
 
+    // Produced thread: it just pushes new items into the vector
     std::thread producer([&] {
         while (!done) {
             mut.lock();
@@ -58,7 +74,7 @@ int main(int argc, char** argv) {
         }
     });
 
-
+    // Consumer thread: processes newly added items
     std::thread consumer([&] {
         ItemTracker tracker;
         int index = 0;
@@ -69,6 +85,7 @@ int main(int argc, char** argv) {
             {
                 if (tracker.processItem(&items[i]))
                 {
+                    // we have found a duplicate and we can end
                     done = true;
                     break;
                 }
@@ -78,7 +95,7 @@ int main(int argc, char** argv) {
         } while(!done);
     });
 
-
+    // Wait until producer and consumer thread finishes
     producer.join();
     consumer.join();
 
