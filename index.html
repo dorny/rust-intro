@@ -108,6 +108,16 @@
                     </li>
                 </ul>
             </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## Where is Rust now?
+
+                    * [Organizations running Rust in production](https://www.rust-lang.org/en-US/friends.html)
+                    * [The Servo Parallel Browser Engine](https://github.com/servo/servo)
+                    * [Redox: A Rust Operating System](https://www.redox-os.org/)
+                    * ...and more
+                </script>
+            </section>
 
             <section data-markdown>
                 <script type="text/template">
@@ -354,39 +364,102 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Functions
-                    * Methods
-                    * Closures
+                    ## Closures
+
+                    Closures in Rust, also called lambdas, are functions that can capture the enclosing environment.
+
+                    ``` rust
+                    // Functional approach
+                    let sum_of_squared_odd_numbers: u32 =
+                    (0..).map(|n| n * n)             // All natural numbers squared
+                        .take_while(|&n| n < upper) // Below upper limit
+                        .filter(|n| is_odd(*n))     // That are odd
+                        .fold(0, |sum, i| sum + i); // Sum them
+                    ```
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Modules
-                </script>
-            </section>
+                    ## Closures
 
-            <section data-markdown>
-                <script type="text/template">
-                    ## Crates
-                </script>
-            </section>
+                    * Fn: the closure captures by reference (&T)
+                    * FnMut: the closure captures by mutable reference (&mut T)
+                    * FnOnce: the closure captures by value (T)
+                    * `move` closures: Without move, a closure may be tied to the stack frame that created it, while a move closure is self-contained.
 
-            <section data-markdown>
-                <script type="text/template">
-                    ## Attributes
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
                     ## Traits
+
+                    Language feature that tells the Rust compiler about functionality a type must provide
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Generics
+                    ## Traits
+
+                    ``` rust
+                    struct Circle {
+                        x: f64,
+                        y: f64,
+                        radius: f64,
+                    }
+
+                    trait HasArea {
+                        fn area(&self) -> f64;
+                    }
+
+                    impl HasArea for Circle {
+                        fn area(&self) -> f64 {
+                            std::f64::consts::PI * (self.radius * self.radius)
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Trait Objects
+
+                    * Rust feature for _dynamic dispatch_
+                    * Uses _Fat_ pointer: pointer to data + pointer to _vtable_
+                    * They are _unsized_ and they must be used behind box.
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Abstract Return Types
+
+                    Abstract return types allow a function to hide a concrete return type behind a trait interface similar to trait objects, while still generating the same statically dispatched code as with concrete types.
+
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Abstract Return Types
+
+                    ``` rust
+                    fn foo(n: u32) -> impl Iterator<Item=u32> {
+                        (0..n).map(|x| x * 100)
+                    }
+                    // ^ behaves as if it had return type Map<Range<u32>, Closure>
+                    // where Closure = type of the |x| x * 100 closure.
+
+                    for x in foo(10) {
+                        // x = 0, 100, 200, ...
+                    }
+                    ```
+
+                    * Currently limited to free-standing or inherent functions
+
                 </script>
             </section>
 
