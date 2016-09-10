@@ -383,9 +383,9 @@
                 <script type="text/template">
                     ## Closures
 
-                    * Fn: the closure captures by reference (&T)
-                    * FnMut: the closure captures by mutable reference (&mut T)
-                    * FnOnce: the closure captures by value (T)
+                    * `Fn`: captures by reference `(&T)`
+                    * `FnMut`: captures by mutable reference `(&mut T)`
+                    * `FnOnce`: captures by value `(T)`
                     * `move` closures: Without move, a closure may be tied to the stack frame that created it, while a move closure is self-contained.
 
                 </script>
@@ -490,7 +490,9 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    <div id=""></div> `Result`
+                    ### `Result`
+
+                    `Result<T, E>` is the type used for returning and propagating errors. It is an enum with the variants, Ok(T), representing success and containing a value, and Err(E), representing error and containing an error value.
 
                     ``` rust
                     enum Result<T, E> {
@@ -498,6 +500,30 @@
                         Err(E),
                     }
                     ```
+
+                    * `try!` macro
+                    * `?` operator
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ### `Result`
+
+                    * `try!` macro
+                    ``` rust
+                    fn write_message() -> io::Result<()> {
+                        let mut file = try!(File::create("valuable_data.txt"));
+                        try!(file.write_all(b"important message"));
+                        Ok(())
+                    }
+                    ```
+
+                    * `?` operator
+                    ``` rust
+                    File::create("foo.txt")?.write_all(b"Hello world!")
+                    ```
+
                 </script>
             </section>
 
