@@ -178,7 +178,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Primitives
+                    ## Primitives
                     * signed integers: `i8`, `i16`, `i32`, `i64` and `isize` (pointer size)
                     * unsigned integers: `u8`, `u16`, `u32`, `u64` and `usize` (pointer size)
                     * floating point: `f32`, `f64`
@@ -190,7 +190,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Tuples
+                    ## Tuples
 
                     A tuple is an ordered list of fixed size where the type of elements is known, but need not be the same.
 
@@ -205,7 +205,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Array and Slices
+                    ## Array and Slices
 
                     * Array is a fixed-size list of elements of the same type
                         ``` rust
@@ -223,7 +223,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Enums
+                    ## Enums
 
                     An enum in Rust is a type that represents data that is one of several possible variants. Each variant in the enum can optionally have data associated with it.
 
@@ -255,7 +255,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### `if / else`
+                    ## `if / else`
                     * Branching is similar to other languages
                     * Condition doesn't need to be surrounded by parentheses
                     * Each condition is followed by a block
@@ -265,7 +265,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### `loop`
+                    ## `loop`
                     * Keyword to indicate an infinite loop
                     * `break` - exit loop at any time
                     * `continue` - skip the rest of the iteration and start a new one
@@ -287,7 +287,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Pattern matching
+                    ## Pattern matching
 
                     _match_ takes an expression and then branches based on its value. Each ‘arm’ of the branch is of the form val => expression. When the value matches, that arm’s expression will be evaluated.
                 </script>
@@ -295,7 +295,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Pattern matching
+                    ## Pattern matching
 
                     ``` rust
                     pub fn print_json(value: Json) {
@@ -314,12 +314,12 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Pattern matching
+                    ## Pattern matching
 
                     ``` rust
                     let value = Json::Boolean(true);
                     match value {
-                        Json::Boolean(b) if (b == true) => println!("It's true!!!),
+                        Json::Boolean(b) if (b == true) => println!("It's true!!!"),
                         _ => println!("Something else than true."),
                     }
                     ```
@@ -328,7 +328,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Pattern matching
+                    ## Pattern matching
 
                     ``` rust
                     let number = 13;
@@ -348,7 +348,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Pattern matching
+                    ## Pattern matching
 
                     ``` rust
                     // Match is an expression too
@@ -471,7 +471,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### `Panic`
+                    ## `Panic`
 
                     It prints an error message, starts unwinding and usually exits the program.
                     Shouldn't be used for regular (expected) errors.
@@ -490,7 +490,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### `Result`
+                    ## `Result`
 
                     `Result<T, E>` is the type used for returning and propagating errors. It is an enum with the variants, Ok(T), representing success and containing a value, and Err(E), representing error and containing an error value.
 
@@ -500,15 +500,12 @@
                         Err(E),
                     }
                     ```
-
-                    * `try!` macro
-                    * `?` operator
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ### `Result`
+                    ## `Result`
 
                     * `try!` macro
                     ``` rust
@@ -529,7 +526,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    # Resource management
+                    ## Resource management
                 </script>
             </section>
 
@@ -576,7 +573,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Stack
+                    ## Stack
 
                     ``` rust
                     fn resource_on_stack() {
@@ -595,7 +592,7 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Heap
+                    ## Heap
 
                     ``` rust
                     fn resource_on_stack() {
@@ -694,26 +691,44 @@
 
             <section data-markdown>
                 <script type="text/template">
-                    ## Owerenship, References and Borrowing
+                    ## Borrowing
+                    ### vs.
+                    ## Reference counting
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Borrowing
+
+                    * A binding that borrows something does not deallocate the resource when it goes out of scope.
+                    * Borrowed reference can't outlive the object it refers to. This is staticaly enforced by compiler.
+                    * Rust has immutable `&T` and mutable `&mut T` borrows.
+                    * Readers-Writers pattern: There can be either one mutable borrow or one or more immutable borrows.
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
                     ## Runtime reference counting
+
+                    * `Rc<T>`: reference-counted pointer type
+                    * `Arc<T>`: atomically reference counted wrapper for shared state.
+                      To be able to use `T` in different thread, `T` must be `Sync`.
+                      Therefore as `T` is often used `Mutex` wrapper or atomics.
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    # Advanced Topics
+                    ## Advanced Topics
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                    ### Macros
-                    ### Compiler plugins
+                    ### Lifetimes
+                    ### Macros & Compiler plugins
                     ### Inline Assembly
                     ### No stdlib
                     ### Custom Allocators
